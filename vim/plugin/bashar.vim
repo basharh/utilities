@@ -4,6 +4,9 @@ if exists("g:loaded_bashar")
 endif
 let g:loaded_bashar = 1
 
+":source the current file
+nmap \x :source %<CR>
+
 nmap <silent> \l :set opfunc=RmLeadingWS<CR>g@
 vmap <silent> \l :<C-U>call RmLeadingWS(visualmode(), 1)<CR>
 
