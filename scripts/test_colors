@@ -1,0 +1,2 @@
+#!/bin/sh
+echo -en "\E[34m\E[1mE\E[0m\n"

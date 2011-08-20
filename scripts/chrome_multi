@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ -z $1 ]; then
+    echo "please specify profile name"
+    exit 1;
+fi;
+echo "launching profile: " $1
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --enable-udd-profiles --user-data-dir="/$1" > /dev/null 2>&1 &

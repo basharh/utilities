@@ -1,0 +1,5 @@
+#!/bin/sh
+#find . -printf "%p\n" -exec browse_php "{}" \; 
+# Echo with bold
+#find . -printf "\033[32m\033[1m%p\033[0m\n" -exec browse_php "{}" \; 
+find . \( -name '*.php' -o -name '*.inc' \) -printf "\033[32m~~~%f~~~\033[0m\n" -exec browse_php "{}" \; 

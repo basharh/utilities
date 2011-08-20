@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z $1 ] || [ ! -e "$1" ]; then
+    echo "Please enter a valid file name";
+    exit 2;
+fi;
+
+egrep -v '^#| +#' $1 | tr -s '\n'

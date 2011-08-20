@@ -1,0 +1,2 @@
+echo "Clearing all poker logs"
+rm -f /tmp/mbs_logs/*

@@ -1,0 +1,5 @@
+#!/bin/sh
+#grep --color=always -inH "$1" $(find . -type f | grep -Ev '(\.svn|\.swp)')
+#grep --color=always -inH "$1" $(find . -type f -name "*.php" -o -name "*.inc")
+#find . \( -name '*.inc' -o -name '*.php' \) -exec grep -inH --color=always "$1" '{}' \;
+find . \( -name '*.inc' -o -name '*.php' -o -name '*.js' \) -exec grep -inH --color=always "$1" '{}' \;

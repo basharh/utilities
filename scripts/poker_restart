@@ -1,0 +1,7 @@
+echo "Restarting Poker"
+sudo /etc/init.d/httpd stop
+sudo /etc/init.d/memcached stop
+rm -f /tmp/mbs_logs/*
+sudo /etc/init.d/memcached start
+sudo /etc/init.d/httpd start
+
