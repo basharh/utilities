@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#This file can be run to run the whole autotools chain
+
+aclocal \
+  && automake --gnu --add-missing \
+  && autoconf && autoheader
