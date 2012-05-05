@@ -99,7 +99,13 @@ if ! has("gui")
   nmap j <M-j>
   nmap h <M-h>
   nmap l <M-l>
+  nmap s <M-s>
+  imap s <M-s>
 endif
+
+" Quick save
+inoremap <M-s> <c-c>:write<cr>
+nnoremap <M-s> :write<cr>
 
 "Leave the old win navs behind, Luke
 map <c-w>h <nop>
@@ -125,10 +131,11 @@ vnoremap gb <esc>`<lt>:exec 'norm '.visualmode().'`>'<cr>
 vnoremap <leader>" <esc>`>a"<esc>`<lt>i"<esc>
 
 "Train yourself not to use ESC to go to normal mode
-inoremap <esc> <nop>
+" inoremap <esc> <nop>
 
 " Select next email address
 onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
+
 
 " }}}
 
