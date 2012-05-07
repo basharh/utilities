@@ -72,7 +72,6 @@ augroup END
 " }}}
 
 " Mappings {{{
-nnoremap <leader>x :source %<CR>
 
 nnoremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 "nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
@@ -101,6 +100,8 @@ if ! has("gui")
   nmap l <M-l>
   nmap s <M-s>
   imap s <M-s>
+  nmap x <M-x>
+  imap x <M-x>
 endif
 
 " Quick save
@@ -113,13 +114,10 @@ map <c-w>j <nop>
 map <c-w>k <nop>
 map <c-w>l <nop>
 
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap ZZ :write \| :close<cr>
 
-
-"Wrap word in quotes
-nnoremap <leader>" ea"<esc>bi"<esc>el
+nnoremap <M-x> :write<CR>:source %<CR>
+inoremap <M-x> <c-c>:write<CR>:source %<CR>
 
 "Go to top of visual selection
 vnoremap gt <esc>`>:exec 'norm '.visualmode().'`<lt>'<cr>
@@ -133,9 +131,30 @@ vnoremap <leader>" <esc>`>a"<esc>`<lt>i"<esc>
 "Train yourself not to use ESC to go to normal mode
 " inoremap <esc> <nop>
 
+" Prevent s from interfering with incomplete <leader>s mappings
+nmap s <nop>
+
 " Select next email address
 onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
 
+nnoremap <leader>sv :vertical split<cr>
+nnoremap <leader>sh :split<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>xv :source $MYVIMRC<cr>
+
+"Wrap word in quotes
+nnoremap <leader>" ea"<esc>bi"<esc>el
+
+" Insert Mode mappings that start with a non-control character are
+" not good
+" nnoremap <leader>x :source %<CR>
+" inoremap <leader>x <c-c>:write<CR>:source %<CR>
+
+augroup shortcuts_group
+autocmd!
+autocmd FileType javascript,c
+      \ nnoremap <buffer> <leader>; :<c-u>execute "normal! mqA;\e"<cr>
+augroup END
 
 " }}}
 
