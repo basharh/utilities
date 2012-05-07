@@ -44,14 +44,15 @@ set statusline+=\ c:\ %c]        " Current line
 set statusline+=\ %P        " Total lines
 " }}}
 
-" General or Muli-filetype autocommands {{{
+" General or Multi-filetype autocommands {{{
 augroup bashar_group
   autocmd!
   autocmd FileType html,c setlocal shiftwidth=2 tabstop=2
   " Automatically cd into the directory that the file is in
   autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
   " Remove any trailing whitespace that is in the file
-  autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+  " autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+  " autocmd BufRead,BufWrite * match Error /\s\+$/
 augroup END
 " }}}
 
@@ -155,6 +156,27 @@ autocmd!
 autocmd FileType javascript,c
       \ nnoremap <buffer> <leader>; :<c-u>execute "normal! mqA;\e"<cr>
 augroup END
+
+nnoremap <leader>w :call ToggleWSMatch()<cr>
+
+"Delete trailing whitespace
+nnoremap <leader>cw :%substitute/\s\+$//ge<cr>
+
+" }}}
+
+" Functions {{{
+
+let g:w_toggled = 0
+function! ToggleWSMatch()
+  echom "Value of g:w_toggled: " . g:w_toggled
+  if ( g:w_toggled == 0  )
+    match Error /\s\+$/
+    let g:w_toggled = 1
+  else
+    match none
+    let g:w_toggled = 0
+  endif
+endfunction
 
 " }}}
 
