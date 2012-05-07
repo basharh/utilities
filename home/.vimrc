@@ -160,7 +160,7 @@ augroup END
 nnoremap <leader>w :call ToggleWSMatch()<cr>
 
 "Delete trailing whitespace
-nnoremap <leader>cw :%substitute/\s\+$//ge<cr>
+nnoremap <leader>cw :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
 
 " }}}
 
