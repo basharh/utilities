@@ -81,8 +81,7 @@ nnoremap <C-\>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-\>g :scs find g <C-R>=expand("<cfile>")<CR><CR>
 
 " Change all back/front ticks to single quote
-noremap \k :s/\‘\\|’/'/g<CR>
-noremap <C-k> :s/\‘\\|’/'/g<CR>
+noremap <leader>k :s/\‘\\|’/'/g<CR>
 
 " Toggle paste options and print it
 nnoremap \p :set paste! \| :set paste?<CR>
@@ -132,6 +131,11 @@ vnoremap <leader>" <esc>`>a"<esc>`<lt>i"<esc>
 "Train yourself not to use ESC to go to normal mode
 " inoremap <esc> <nop>
 
+" Use <c-k> as <esc> or <c-c>
+noremap! <c-k> <c-c>
+xnoremap <c-k> <c-c>
+cnoremap <c-k> <c-c>
+
 " Prevent s from interfering with incomplete <leader>s mappings
 nmap s <nop>
 
@@ -161,6 +165,14 @@ nnoremap <leader>w :call ToggleWSMatch()<cr>
 
 "Delete trailing whitespace
 nnoremap <leader>cw :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
+
+" Quickfix mappings
+nnoremap qf :cfirst<cr>
+nnoremap qn :cnext<cr>
+nnoremap qp :cprevious<cr>
+nnoremap qo :copen<cr>
+
+nnoremap <leader>q :quit<cr>
 
 " }}}
 
