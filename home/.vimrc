@@ -24,6 +24,8 @@ if has("mac") && has("gui")
 endif
 " }}}
 
+call pathogen#infect('bundle', 'vimfiles')
+
 filetype plugin indent on
 syntax on
 
@@ -87,10 +89,12 @@ noremap <leader>k :s/\‘\\|’/'/g<CR>
 nnoremap \p :set paste! \| :set paste?<CR>
 noremap <C-p> :set paste! \| :set paste?<CR>
 
-nnoremap <silent> <M-k> :wincmd k<CR>
-nnoremap <silent> <M-j> :wincmd j<CR>
-nnoremap <silent> <M-h> :wincmd h<CR>
-nnoremap <silent> <M-l> :wincmd l<CR>
+nnoremap <silent> <M-k> :wincmd k<CR>:echo winnr()<cr>
+nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
+nnoremap <silent> <M-h> :wincmd h<CR>:echo winnr()<cr>
+nnoremap <silent> <M-l> :wincmd l<CR>:echo winnr()<cr>
+
+nnoremap <silent> w= :wincmd =<CR>
 
 " Fix Alt-keys in terminal.
 if ! has("gui")
@@ -170,9 +174,29 @@ nnoremap <leader>cw :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
 nnoremap qf :cfirst<cr>
 nnoremap qn :cnext<cr>
 nnoremap qp :cprevious<cr>
-nnoremap qo :copen<cr>
+" nnoremap qo :copen<cr>
+
+" Quickfix toggle
+nnoremap qt :call <SID>QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+function! s:QuickfixToggle()
+  if g:quickfix_is_open
+    cclose
+    let g:quickfix_is_open = 0
+    execute g:quickfix_return_to_window . "wincmd w"
+  else
+    let g:quickfix_return_to_window = winnr()
+    copen
+    let g:quickfix_is_open = 1
+  endif
+endfunction
 
 nnoremap <leader>q :quit<cr>
+
+nnoremap <leader>l :ls<cr>
+
+nnoremap <leader>h :execute "help " . expand("<cword>")<cr>
 
 " }}}
 
@@ -180,7 +204,6 @@ nnoremap <leader>q :quit<cr>
 
 let g:w_toggled = 0
 function! ToggleWSMatch()
-  echom "Value of g:w_toggled: " . g:w_toggled
   if ( g:w_toggled == 0  )
     match Error /\s\+$/
     let g:w_toggled = 1
