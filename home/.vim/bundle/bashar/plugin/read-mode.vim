@@ -2,6 +2,8 @@
 " up and down. Currently, I lose the position that I was reading at
 " when I scroll down the page with 'u' and 'd'
 
+" TODO: Automatically toggle read-mode for read-only files.
+
 nnoremap <leader>r :call <SID>ToggleReadMode()<cr>
 
 function! s:ToggleReadMode()
