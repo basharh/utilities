@@ -24,7 +24,8 @@ if has("mac") && has("gui")
 endif
 " }}}
 
-call pathogen#infect('bundle', 'vimfiles')
+call pathogen#infect()
+Helptags " Tells Pathogen to generate help tags ( I think :/ )
 
 filetype plugin indent on
 syntax on
