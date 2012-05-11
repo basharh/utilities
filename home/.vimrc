@@ -95,7 +95,7 @@ nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
 nnoremap <silent> <M-h> :wincmd h<CR>:echo winnr()<cr>
 nnoremap <silent> <M-l> :wincmd l<CR>:echo winnr()<cr>
 
-nnoremap <silent> w= :wincmd =<CR>
+nnoremap <silent> <leader>w= :wincmd =<CR>
 
 " Fix Alt-keys in terminal.
 if ! has("gui")
