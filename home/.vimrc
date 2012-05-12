@@ -50,6 +50,7 @@ set statusline+=\ %P        " Total lines
 " General or Multi-filetype autocommands {{{
 augroup bashar_group
   autocmd!
+  autocmd vimenter * NERDTree " Launch NERDTree at start
   autocmd FileType html,c setlocal shiftwidth=2 tabstop=2
   " Automatically cd into the directory that the file is in
   autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -90,10 +91,15 @@ noremap <leader>k :s/\‘\\|’/'/g<CR>
 nnoremap \p :set paste! \| :set paste?<CR>
 noremap <C-p> :set paste! \| :set paste?<CR>
 
-nnoremap <silent> <M-k> :wincmd k<CR>:echo winnr()<cr>
-nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
-nnoremap <silent> <M-h> :wincmd h<CR>:echo winnr()<cr>
-nnoremap <silent> <M-l> :wincmd l<CR>:echo winnr()<cr>
+" nnoremap <silent> <M-k> :wincmd k<CR>:echo winnr()<cr>
+" nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
+" nnoremap <silent> <M-h> :wincmd h<CR>:echo winnr()<cr>
+" nnoremap <silent> <M-l> :wincmd l<CR>:echo winnr()<cr>
+
+nnoremap <silent> <M-k> :wincmd k<CR>
+nnoremap <silent> <M-j> :wincmd j<CR>
+nnoremap <silent> <M-h> :wincmd h<CR>
+nnoremap <silent> <M-l> :wincmd l<CR>
 
 nnoremap <silent> <leader>w= :wincmd =<CR>
 
@@ -172,13 +178,13 @@ nnoremap <leader>w :call ToggleWSMatch()<cr>
 nnoremap <leader>cw :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
 
 " Quickfix mappings
-nnoremap qf :cfirst<cr>
-nnoremap qn :cnext<cr>
-nnoremap qp :cprevious<cr>
+nnoremap \qf :cfirst<cr>
+nnoremap \qn :cnext<cr>
+nnoremap \qp :cprevious<cr>
 " nnoremap qo :copen<cr>
 
 " Quickfix toggle
-nnoremap qt :call <SID>QuickfixToggle()<cr>
+nnoremap \qt :call <SID>QuickfixToggle()<cr>
 
 let g:quickfix_is_open = 0
 function! s:QuickfixToggle()
@@ -198,6 +204,14 @@ nnoremap <leader>q :quit<cr>
 nnoremap <leader>l :ls<cr>
 
 nnoremap <leader>h :execute "help " . expand("<cword>")<cr>
+
+" {{{2 NERDTree Mappings *** "
+nnoremap <leader>tt :NERDTreeToggle<cr>
+
+"Find the current file in the NERDTree
+nnoremap <leader>tf :NERDTreeFind<cr>
+
+" Close NERDTree Mapppings}}}2
 
 " }}}
 
