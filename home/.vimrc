@@ -181,7 +181,7 @@ nnoremap <leader>cw :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
 nnoremap \qf :cfirst<cr>
 nnoremap \qn :cnext<cr>
 nnoremap \qp :cprevious<cr>
-" nnoremap qo :copen<cr>
+nnoremap \qo :copen<cr>
 
 " Quickfix toggle
 nnoremap \qt :call <SID>QuickfixToggle()<cr>
