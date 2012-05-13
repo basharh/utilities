@@ -27,6 +27,9 @@ endif
 call pathogen#infect()
 Helptags " Tells Pathogen to generate help tags ( I think :/ )
 
+" Tells VIM to run the filetype-specific plugins and
+" filetype-specific indent scripts when the filetype
+" of a buffer is set
 filetype plugin indent on
 syntax on
 
@@ -53,7 +56,7 @@ augroup bashar_group
   autocmd vimenter * NERDTree " Launch NERDTree at start
   autocmd FileType html,c setlocal shiftwidth=2 tabstop=2
   " Automatically cd into the directory that the file is in
-  autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+  "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
   " Remove any trailing whitespace that is in the file
   " autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
   " autocmd BufRead,BufWrite * match Error /\s\+$/
