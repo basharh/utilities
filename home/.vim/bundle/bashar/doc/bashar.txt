@@ -1,0 +1,12 @@
+*bashar.txt*	A bunch of utilities that I use.
+
+                                        |typecorr-settings|
+
+Some useful utilities that I got from here and there.
+
+Mappings:
+
+Commands:
+
+                                        *typecorr-settings*
+This plugin doesn't have any settings.
