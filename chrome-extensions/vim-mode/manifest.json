@@ -1,6 +1,10 @@
 {
   "version": "1.0",
   "name": "Bashar's VIM Mode for Chrome",
+  "icons": {
+    "128": "vim-mode128.png",
+    "48": "vim-mode48.png"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
