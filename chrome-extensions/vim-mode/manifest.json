@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "name": "Bashar's VIM Mode for Chrome",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["vim.js"]
+    }
+  ]
+}
