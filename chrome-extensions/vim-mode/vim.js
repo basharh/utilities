@@ -1,4 +1,6 @@
 
+var vi_normal_mode = false;
+
 document.body.addEventListener("keydown", keyrelease, false);
 
 function keyrelease(evt){
@@ -11,8 +13,31 @@ function keyrelease(evt){
     case 75: /* k */
     case 85: /* u */
     case 68: /* d */
-      add_evt( evt.keyCode );
+      if ( vi_normal_mode ){ /* Only handle movement keys in normal mode */
+        add_evt( evt.keyCode );
+        evt.preventDefault();
+      }
+      else
+      {
+        if ( evt.keyCode == 75 && evt.ctrlKey ){
+          chrome.extension.sendRequest({ source: "content", keyCode: evt.keyCode }, function(response) {
+            //console.log("Recieved response from extension: " + response.farewell);
+          });
+        }
+
+      }
       /*add_evt_log( evt.keyCode );*/
+      break;
+    /*case 67: [> c <]*/
+    case 73: /* i */
+      /*console.log("i was pressed. vi_normal_mode: " + vi_normal_mode );*/
+      if ( vi_normal_mode )
+      {
+        chrome.extension.sendRequest({source: "content", keyCode: evt.keyCode }, function(response) {
+          //console.log("Recieved response from extension: " + response.farewell);
+        });
+        evt.preventDefault();
+      }
       break;
     default:
       break;
@@ -30,7 +55,8 @@ var add_evt_log = (function(){
     else
     {
       var time = Date.now();
-      console.log("key pressed: " + keyCode + ", time from prev key: " + ( time - prev_key_ts ) );
+      /*console.log("key pressed: " + keyCode + ", time from prev key: " +
+        ( time - prev_key_ts ) );*/
       prev_key_ts = time;
     }
   }
@@ -85,7 +111,7 @@ function handle_next(){
     var evt = move_q.shift();
     handle_move_req( evt );
   }
-  else 
+  else
   {
     loop_running = false;
   }
@@ -108,7 +134,7 @@ function handle_move_req(req){
     default:
       break;
   }
-  
+
   //handle_next();
 }
 
@@ -131,3 +157,14 @@ function slowScroll( amt ){
   }
   scrollStep();
 }
+
+chrome.extension.onRequest.addListener(
+  function(reqObj, senderObj, sendResponseFunc) {
+    /*console.log("Message recieved in Content script. source: " +
+     reqObj.source + ", reqObj.vi_normal_mode: " +
+      reqObj.vi_normal_mode );*/
+    if ( reqObj.source != "background" )
+      return;
+
+    vi_normal_mode = reqObj.vi_normal_mode;
+});

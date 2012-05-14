@@ -5,10 +5,19 @@
     "128": "vim-mode128.png",
     "48": "vim-mode48.png"
   },
+  "browser_action": {
+    "default_icon": "vim-mode19.png"
+  },
+  "background" : {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["vim.js"]
     }
+  ],
+  "permissions": [
+    "tabs"
   ]
 }
