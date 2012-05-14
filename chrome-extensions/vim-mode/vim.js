@@ -2,12 +2,15 @@
 document.body.addEventListener("keydown", keyrelease, false);
 
 function keyrelease(evt){
+
+  /*console.log("key pressed: " + evt.keyCode + ", ctrlkey: " + evt.ctrlKey);*/
+
   /* k: 75, h: 72, l: 76, j: 74, u: 85, d: 68 */
   switch(evt.keyCode){
-    case 74:
-    case 75:
-    case 85:
-    case 68:
+    case 74: /* j */
+    case 75: /* k */
+    case 85: /* u */
+    case 68: /* d */
       add_evt( evt.keyCode );
       /*add_evt_log( evt.keyCode );*/
       break;
@@ -16,20 +19,28 @@ function keyrelease(evt){
   }
 }
 
-var prev_key_ts = 0;
-function add_evt_log(keyCode){
+var add_evt_log = (function(){
 
-  if ( prev_key_ts == 0 )
-  {
-    prev_key_ts = Date.now();
+  var prev_key_ts = 0;
+  function add_evt_log(keyCode){
+    if ( prev_key_ts == 0 )
+    {
+      prev_key_ts = Date.now();
+    }
+    else
+    {
+      var time = Date.now();
+      console.log("key pressed: " + keyCode + ", time from prev key: " + ( time - prev_key_ts ) );
+      prev_key_ts = time;
+    }
   }
-  else
-  {
-    var time = Date.now();
-    console.log("key pressed: " + keyCode + ", time from prev key: " + ( time - prev_key_ts ) );
-    prev_key_ts = time;
-  }
-}
+
+  return add_evt_log;
+})()
+
+
+
+var prev_key_ts = 0;
 
 var move_q = new Array();
 
