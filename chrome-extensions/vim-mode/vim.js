@@ -9,9 +9,25 @@ function keyrelease(evt){
     case 85:
     case 68:
       add_evt( evt.keyCode );
+      /*add_evt_log( evt.keyCode );*/
       break;
     default:
       break;
+  }
+}
+
+var prev_key_ts = 0;
+function add_evt_log(keyCode){
+
+  if ( prev_key_ts == 0 )
+  {
+    prev_key_ts = Date.now();
+  }
+  else
+  {
+    var time = Date.now();
+    console.log("key pressed: " + keyCode + ", time from prev key: " + ( time - prev_key_ts ) );
+    prev_key_ts = time;
   }
 }
 
