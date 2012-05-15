@@ -27,6 +27,8 @@ endif
 call pathogen#infect()
 Helptags " Tells Pathogen to generate help tags ( I think :/ )
 
+source $VIMRUNTIME/ftplugin/man.vim
+
 " Tells VIM to run the filetype-specific plugins and
 " filetype-specific indent scripts when the filetype
 " of a buffer is set

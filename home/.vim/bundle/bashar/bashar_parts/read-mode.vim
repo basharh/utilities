@@ -8,13 +8,26 @@ nnoremap <leader>r :call <SID>ToggleReadMode()<cr>
 
 function! s:ToggleReadMode()
 
-  if( exists("b:read_mode") && b:read_mode )
+  " Used to prevent toggling 'modifiable' for originally
+  " unmodifiable buffers like NERDTree
+  if ( !exists("b:originally_modifiable") )
+    let b:originally_modifiable = &modifiable
+  endif
+
+  if( exists("b:read_mode") && b:read_mode ) " read_mode ON
     set guicursor&
+    if ( b:originally_modifiable )
+      setlocal modifiable
+    endif
     let b:read_mode = 0
     call s:RestorePreReadModeKeys()
-  else
+  else " read_mode OFF
     set
       \ guicursor=n:blinkwait0-blinkon0-blinkoff0-ver1-hor1-hiddenCursor
+    " Switch buffers to unmodifiable for read_mode=ON.
+    if ( b:originally_modifiable )
+      setlocal nomodifiable
+    endif
     let b:read_mode = 1
     call s:MapReadModeKeys()
   endif
