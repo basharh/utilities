@@ -1,2 +1,10 @@
-#!/bin/sh
-echo -en "\E[34m\E[1mE\E[0m\n"
+#!/bin/zsh
+
+
+# In the follwing we need echo -e to turn \e into <ESC>
+echo -en "\e[34m\e[1mhello\e[0m\n"
+
+e="\033["
+echo -n "${e}34m${e}1mhello${e}0m\n"
+
+echo -e "\e[0;31;40mIn Color.\e[0;37;40m Are we still cololred??"
