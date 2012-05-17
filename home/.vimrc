@@ -50,6 +50,7 @@ set statusline+=\ c:\ %c]        " Current line
 "set statusline+=%L        " Total lines
 "set statusline+=\ %p        " Total lines
 set statusline+=\ %P        " Total lines
+set statusline+=\ [%{winnr()}]
 " }}}
 
 " General or Multi-filetype autocommands {{{
@@ -177,10 +178,10 @@ autocmd FileType javascript,c
       \ nnoremap <buffer> <leader>; :<c-u>execute "normal! mqA;\e"<cr>
 augroup END
 
-nnoremap <leader>w :call ToggleWSMatch()<cr>
+nnoremap <leader>ws :call ToggleWSMatch()<cr>
 
 "Delete trailing whitespace
-nnoremap <leader>cw :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
+nnoremap <leader>wc :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
 
 " Quickfix mappings
 nnoremap \qf :cfirst<cr>
