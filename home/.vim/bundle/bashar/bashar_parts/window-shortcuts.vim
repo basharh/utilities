@@ -1,22 +1,36 @@
 
-if exists("loaded_bashar_win_shorts")
-  finish
-endif
+"if exists("loaded_bashar_win_shorts")
+  "finish
+"endif
 let loaded_bashar_win_shorts = 1
 
 " set splitbelow
+
+" Sets the minimum height of a window
+set winheight=10
 
 nnoremap <leader>w+ :<c-u>call <SID>ChangeWinSize(<c-r>=v:count<cr>, 1, 1)<cr>
 nnoremap <leader>w- :<c-u>call <SID>ChangeWinSize(<c-r>=v:count<cr>, 1, 0)<cr>
 nnoremap <leader>v+ :<c-u>call <SID>ChangeWinSize(<c-r>=v:count<cr>, 0, 1)<cr>
 nnoremap <leader>v- :<c-u>call <SID>ChangeWinSize(<c-r>=v:count<cr>, 0, 0)<cr>
 
-nnoremap <leader>wm :<c-u>call <SID>MoveToWindow(<c-r>=v:count<cr>)<cr>
+nnoremap <leader>wm :<c-u>call MoveToWindow(<c-r>=v:count<cr>)<cr>
+
+" Jumps to NERDTree Window. 
+" TODO: This should go into a nerdtree plugin, or 
+" only called when NERDTree has been loaded.
+nnoremap <leader>wn :call <SID>JumpToNERDTreeWin()<cr>
 
 nnoremap <leader>wo :<c-u>call <SID>CloseOtherWindows<cr>
 
-nmap <leader>wp :<c-u>execute "normal \<lt>c-w>p"<cr>
-nmap <leader>wP :<c-u>execute "normal \<lt>c-w>P"<cr>
+nnoremap <leader>wp :<c-u>execute "normal \<lt>c-w>p"<cr>
+nnoremap <leader>wP :<c-u>execute "normal \<lt>c-w>P"<cr>
+nnoremap <leader>wt :<c-u>execute "normal \<lt>c-w>T"<cr>
+
+nmap <M-p> :<c-u>bprevious<cr>
+nmap <M-n> :<c-u>bnext<cr>
+
+nmap <M-3> :<c-u>e #<cr>
 
 function! s:ChangeWinSize(count, hor, inc)
 
@@ -38,7 +52,7 @@ function! s:ChangeWinSize(count, hor, inc)
 
 endfunction
 
-function! s:MoveToWindow(num)
+function! g:MoveToWindow(num)
   execute "normal! " . a:num . "\<c-w>w"
 endfunction
 
@@ -65,3 +79,11 @@ function! s:CloseWindow()
     close
   endif
 endfunction
+
+"Looks for NerdTree Window and goes there
+function! s:JumpToNERDTreeWin()
+  windo if ( &filetype ==# "nerdtree" ) | let g:nerdtree_winnr = winnr() | endif
+  echo g:nerdtree_winnr
+  call g:MoveToWindow(g:nerdtree_winnr)
+endfunction
+

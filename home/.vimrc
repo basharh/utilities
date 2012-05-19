@@ -110,6 +110,7 @@ nnoremap <silent> <M-l> :wincmd l<CR>
 nnoremap <silent> <leader>w= :wincmd =<CR>
 
 " Fix Alt-keys in terminal.
+" TODO: Find a way to this in a loop
 if ! has("gui")
   nmap k <M-k>
   nmap j <M-j>
@@ -161,8 +162,9 @@ onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
 
 nnoremap <leader>sv :vertical split<cr>
 nnoremap <leader>sh :split<cr>
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>xv :source $MYVIMRC<cr>
+nnoremap <leader>et :split ~/TODO<cr>
 
 "Wrap word in quotes
 nnoremap <leader>" ea"<esc>bi"<esc>el
@@ -182,28 +184,6 @@ nnoremap <leader>ws :call ToggleWSMatch()<cr>
 
 "Delete trailing whitespace
 nnoremap <leader>wc :%substitute/\s\+$//ge<cr>:nohlsearch<cr>:write<cr>
-
-" Quickfix mappings
-nnoremap \qf :cfirst<cr>
-nnoremap \qn :cnext<cr>
-nnoremap \qp :cprevious<cr>
-nnoremap \qo :copen<cr>
-
-" Quickfix toggle
-nnoremap \qt :call <SID>QuickfixToggle()<cr>
-
-let g:quickfix_is_open = 0
-function! s:QuickfixToggle()
-  if g:quickfix_is_open
-    cclose
-    let g:quickfix_is_open = 0
-    execute g:quickfix_return_to_window . "wincmd w"
-  else
-    let g:quickfix_return_to_window = winnr()
-    copen
-    let g:quickfix_is_open = 1
-  endif
-endfunction
 
 nnoremap <leader>q :quit<cr>
 
