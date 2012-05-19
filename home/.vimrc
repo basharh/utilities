@@ -94,8 +94,7 @@ nnoremap <C-\>g :scs find g <C-R>=expand("<cfile>")<CR><CR>
 noremap <leader>k :s/\‘\\|’/'/g<CR>
 
 " Toggle paste options and print it
-nnoremap \p :set paste! \| :set paste?<CR>
-noremap <C-p> :set paste! \| :set paste?<CR>
+nnoremap \v :set paste! \| :set paste?<CR>
 
 " nnoremap <silent> <M-k> :wincmd k<CR>:echo winnr()<cr>
 " nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
@@ -108,6 +107,7 @@ nnoremap <silent> <M-h> :wincmd h<CR>
 nnoremap <silent> <M-l> :wincmd l<CR>
 
 nnoremap <silent> <leader>w= :wincmd =<CR>
+nnoremap <silent> <leader>v= :wincmd =<CR>
 
 " Fix Alt-keys in terminal.
 " TODO: Find a way to this in a loop

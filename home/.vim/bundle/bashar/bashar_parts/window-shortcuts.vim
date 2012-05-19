@@ -1,7 +1,7 @@
 
-"if exists("loaded_bashar_win_shorts")
-  "finish
-"endif
+if exists("loaded_bashar_win_shorts")
+  finish
+endif
 let loaded_bashar_win_shorts = 1
 
 " set splitbelow
@@ -23,7 +23,6 @@ nnoremap <leader>wn :call <SID>JumpToNERDTreeWin()<cr>
 
 nnoremap <leader>wo :<c-u>call <SID>CloseOtherWindows<cr>
 
-nnoremap <leader>wp :<c-u>execute "normal \<lt>c-w>p"<cr>
 nnoremap <leader>wP :<c-u>execute "normal \<lt>c-w>P"<cr>
 nnoremap <leader>wt :<c-u>execute "normal \<lt>c-w>T"<cr>
 
@@ -52,7 +51,7 @@ function! s:ChangeWinSize(count, hor, inc)
 
 endfunction
 
-function! g:MoveToWindow(num)
+function! MoveToWindow(num)
   execute "normal! " . a:num . "\<c-w>w"
 endfunction
 
@@ -84,6 +83,6 @@ endfunction
 function! s:JumpToNERDTreeWin()
   windo if ( &filetype ==# "nerdtree" ) | let g:nerdtree_winnr = winnr() | endif
   echo g:nerdtree_winnr
-  call g:MoveToWindow(g:nerdtree_winnr)
+  call MoveToWindow(g:nerdtree_winnr)
 endfunction
 

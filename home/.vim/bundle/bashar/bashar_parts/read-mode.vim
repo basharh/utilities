@@ -4,6 +4,11 @@
 
 " TODO: Automatically toggle read-mode for read-only files.
 
+if exists("loaded_bashar_read_mode")
+  finish
+endif
+let loaded_bashar_read_mode = 1
+
 nnoremap <leader>r :call <SID>ToggleReadMode()<cr>
 
 function! s:ToggleReadMode()
