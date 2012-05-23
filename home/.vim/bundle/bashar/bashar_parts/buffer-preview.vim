@@ -5,7 +5,6 @@ endif
 let loaded_bashar_buffer_preview = 1
 
 function! s:CreateBufferPreviewWindow()
-  let temp = @"
 
   topleft 10new
 
@@ -15,7 +14,9 @@ function! s:CreateBufferPreviewWindow()
   setlocal winfixheight
   setlocal nobuflisted
   let g:BufList = []
-  silent execute "normal ggdG"
+
+  " Delete to the black hole register(_)
+  silent 1,$delete _
 
   " loop over all buffer numbers and find which one exist and put
   " them in a list use bufname("%") on them
@@ -32,12 +33,6 @@ function! s:CreateBufferPreviewWindow()
     let @" = g:BufList[i] . "\n"
     normal P
   endfor
-
-  "Remove the stupid trailing new line
-  silent execute "normal Gdd"
-
-  " restore the value of the anon reg
-  let @" = temp
 
   setlocal nomodifiable
   setlocal buftype=nofile
