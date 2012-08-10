@@ -193,6 +193,7 @@ nnoremap <leader>l :ls<cr>
 nnoremap <leader>h :execute "help " . expand("<cword>")<cr>
 
 nnoremap <c-h> :set hls!<cr>
+nnoremap <c-l> :set list!<cr>
 
 " {{{2 NERDTree Mappings *** "
 nnoremap <leader>tt :NERDTreeToggle<cr>
