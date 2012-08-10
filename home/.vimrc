@@ -109,17 +109,18 @@ nnoremap <silent> <M-l> :wincmd l<CR>
 nnoremap <silent> <leader>w= :wincmd =<CR>
 nnoremap <silent> <leader>v= :wincmd =<CR>
 
-" Fix Alt-keys in terminal.
-" TODO: Find a way to this in a loop
-if ! has("gui")
-  nmap k <M-k>
-  nmap j <M-j>
-  nmap h <M-h>
-  nmap l <M-l>
-  nmap s <M-s>
-  imap s <M-s>
-  nmap x <M-x>
-  imap x <M-x>
+" Map ^[har to <M-char>
+" Adoped from:
+" http://vim.wikia.com/wiki/Fix_meta-keys_that_break_out_of_Insert_mode
+if !has("gui")
+  let c="a"
+  while c <= "z"
+    let imapping = "imap \e" . c . " \<M-" . c . ">"
+    let nmapping = "nmap \e" . c . " \<M-" . c . ">"
+    execute imapping
+    execute nmapping
+    let c = nr2char(1+char2nr(c))
+  endwhile
 endif
 
 " Quick save

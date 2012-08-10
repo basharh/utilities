@@ -13,6 +13,7 @@ function! s:CreateBufferPreviewWindow()
   setlocal buftype=""
   setlocal winfixheight
   setlocal nobuflisted
+
   let g:BufList = []
 
   " Delete to the black hole register(_)
@@ -37,6 +38,8 @@ function! s:CreateBufferPreviewWindow()
   setlocal nomodifiable
   setlocal buftype=nofile
   setlocal ft=bpreview
+  setlocal bufhidden=wipe " More powerful that bdelete
+  setlocal cursorline
 endfunction
 
 function! s:IsBufferPreviewWindowOpen()

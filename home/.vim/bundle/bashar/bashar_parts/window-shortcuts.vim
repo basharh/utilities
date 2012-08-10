@@ -7,7 +7,7 @@ let loaded_bashar_win_shorts = 1
 " set splitbelow
 
 " Sets the minimum height of a window
-set winheight=10
+" set winheight=10
 
 nnoremap <leader>w+ :<c-u>call <SID>ChangeWinSize(<c-r>=v:count<cr>, 1, 1)<cr>
 nnoremap <leader>w- :<c-u>call <SID>ChangeWinSize(<c-r>=v:count<cr>, 1, 0)<cr>
