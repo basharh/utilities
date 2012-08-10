@@ -126,6 +126,7 @@ endif
 " Quick save
 inoremap <M-s> <c-c>:write<cr>
 nnoremap <M-s> :write<cr>
+nnoremap <leader>x :qa<cr>
 
 "Leave the old win navs behind, Luke
 map <c-w>h <nop>
@@ -164,7 +165,6 @@ onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
 nnoremap <leader>sv :vertical split<cr>
 nnoremap <leader>sh :split<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>xv :source $MYVIMRC<cr>
 nnoremap <leader>et :split ~/TODO<cr>
 
 "Wrap word in quotes
