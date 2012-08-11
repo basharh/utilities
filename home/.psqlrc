@@ -1,0 +1,3 @@
+\set HISTFILE ~/.psql_history
+\set HISTSIZE 10000
+\set HISTCONTROL ignoredups
