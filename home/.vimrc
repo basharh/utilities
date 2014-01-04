@@ -4,8 +4,8 @@ let mapleader = ","
 
 " Option Settings {{{
 set nocompatible " Necesary for lots of cool vim things
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set shiftround
 set expandtab
 set smarttab
@@ -57,7 +57,9 @@ set statusline+=\ [%{winnr()}]
 augroup bashar_group
   autocmd!
   autocmd vimenter * NERDTree " Launch NERDTree at start
-  autocmd FileType html,c setlocal shiftwidth=2 tabstop=2
+  autocmd FileType html,c,java setlocal shiftwidth=4 tabstop=4
+  autocmd FileType python,javascript,html,css,java
+    \ setlocal formatoptions-=t "noexpandtab
   " Automatically cd into the directory that the file is in
   "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
   " Remove any trailing whitespace that is in the file
@@ -194,6 +196,8 @@ nnoremap <leader>h :execute "help " . expand("<cword>")<cr>
 
 nnoremap <c-h> :set hls!<cr>
 nnoremap <c-l> :set list!<cr>
+nnoremap <c-n> :tabNext<cr>
+nnoremap <C-t> :execute "tabedit " . expand("%")<cr>
 
 " {{{2 NERDTree Mappings *** "
 nnoremap <leader>tt :NERDTreeToggle<cr>
@@ -220,4 +224,21 @@ endfunction
 
 " }}}
 
+" Colors {{{
+"color zellner
+hi Visual term=reverse ctermfg=11 ctermbg=0
+hi Search term=reverse ctermfg=11 ctermbg=0
+hi PMenu term=reverse ctermfg=11 ctermbg=0
+hi PMenuSel term=reverse ctermfg=0 ctermbg=11
+hi Folded ctermfg=1 ctermbg=0
+" }}}
+
+nnoremap <space> za
+set foldmethod=indent
+set foldnestmax=2
+
+"let t_SI = "\033]12;red\007"
+"let t_EI = "\033]12;blue\007"
+
 " cscope add ~/cscope.out
+
