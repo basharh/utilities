@@ -59,3 +59,6 @@ function zle-keymap-select() {
 }
 
 zle -N zle-keymap-select
+
+export PATH=$HOME/local/bin:$PATH
+#export NODE_PATH=$HOME/local/lib/node_modules
