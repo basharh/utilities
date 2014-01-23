@@ -7,16 +7,21 @@ if [ $(id -u) != 0 ]; then
     exit 1
 fi
 
-apt-get -qq update
-apt-get -qq install -y git zsh openssh-server unzip
+userdel -r bashar
+addgroup bashar
+useradd -m -g bashar -G sudo,adm bashar
 
-chsh -s /bin/zsh bashar
+#apt-get -q update
+apt-get -q install -y git zsh openssh-server unzip
+
 su bashar
-$HOME = /home/bashar
+HOME=/home/bashar
+SSH_FOLDER=$HOME/.ssh
+AUTHORIZED_KEYS=$HOME/.ssh/authorized_keys
 
-if [ -d ~/.ssh ] || [ -f ~/.ssh/authorized_keys ]; then
-    echo "The files exist"
-    exit 1
+if [ ! -d $SSH_FOLDER ] || [ ! -f $AUTHORIZED_KEYS ]; then
+    mkdir $SSH_FOLDER
+    touch $AUTHORIZED_KEYS
 fi
 
 mkdir $HOME/.vim
@@ -24,9 +29,12 @@ mkdir $HOME/.vim/bundle
 mkdir $HOME/.vim/autoload
 
 mkdir $HOME/packages
-git clone git@github.com:basharh/utilities.git
-git clone git@github.com:scrooloose/nerdtree.git
-git clone git@github.com:scrooloose/nerdcommenter.git
+#git clone git@github.com:basharh/utilities.git
+#git clone git@github.com:scrooloose/nerdtree.git
+#git clone git@github.com:scrooloose/nerdcommenter.git
+git clone https://github.com/basharh/utilities.git
+git clone https://github.com/basharh/scrooloose/nerdtree.git
+git clone https://github.com/basharh/scrooloose/nerdcommenter.git
 wget --content-disposition 'http://www.vim.org/scripts/download_script.php?src_id=20953'
 unzip -d bufexplorer bufexplorer-7.4.2.zip
 
@@ -42,3 +50,4 @@ ln -s $HOME/packages/nerdtree
 ln -s $HOME/packages/nerdcommenter
 ln -s $HOME/packages/bufexplorer
 
+#chsh -s /bin/zsh bashar
