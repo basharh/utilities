@@ -16,6 +16,7 @@ mkdir $HOME/.vim/bundle
 mkdir $HOME/.vim/autoload
 
 mkdir $HOME/packages
+cd $HOME/packages
 #git clone git@github.com:basharh/utilities.git
 #git clone git@github.com:scrooloose/nerdtree.git
 #git clone git@github.com:scrooloose/nerdcommenter.git
