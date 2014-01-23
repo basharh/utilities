@@ -33,8 +33,8 @@ mkdir $HOME/packages
 #git clone git@github.com:scrooloose/nerdtree.git
 #git clone git@github.com:scrooloose/nerdcommenter.git
 git clone https://github.com/basharh/utilities.git
-git clone https://github.com/basharh/scrooloose/nerdtree.git
-git clone https://github.com/basharh/scrooloose/nerdcommenter.git
+git clone https://github.com/scrooloose/nerdtree.git
+git clone https://github.com/scrooloose/nerdcommenter.git
 wget --content-disposition 'http://www.vim.org/scripts/download_script.php?src_id=20953'
 unzip -d bufexplorer bufexplorer-7.4.2.zip
 
