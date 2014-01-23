@@ -2,9 +2,10 @@
 
 set -e # Exit on error
 
+USER=$(whoami)
 HOME=/home/$USER
 if [ $(id -u) != 0 ]; then
-HOME=/root
+HOME="/root"
 fi
 
 SSH_FOLDER=$HOME/.ssh
