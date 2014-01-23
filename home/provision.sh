@@ -10,6 +10,7 @@ fi
 apt-get -qq update
 apt-get -qq install -y git zsh openssh-server unzip
 
+chsh -s /bin/zsh bashar
 su bashar
 $HOME = /home/bashar
 
