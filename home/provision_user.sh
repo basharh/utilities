@@ -23,6 +23,7 @@ cd $HOME/packages
 git clone https://github.com/basharh/utilities.git
 git clone https://github.com/scrooloose/nerdtree.git
 git clone https://github.com/scrooloose/nerdcommenter.git
+git clone https://github.com/tpope/vim-pathogen.git
 wget --content-disposition 'http://www.vim.org/scripts/download_script.php?src_id=20953'
 unzip -d bufexplorer bufexplorer-7.4.2.zip
 
@@ -37,5 +38,8 @@ ln -s $HOME/packages/utilities/home/.vim/bundle/bashar
 ln -s $HOME/packages/nerdtree
 ln -s $HOME/packages/nerdcommenter
 ln -s $HOME/packages/bufexplorer
+
+cd $HOME/.vim/autoload
+ln -s $HOME/packages/vim-pathogen/autoload/pathogen.vim
 
 #chsh -s /bin/zsh bashar
