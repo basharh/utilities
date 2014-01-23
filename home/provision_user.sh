@@ -4,7 +4,7 @@ set -e # Exit on error
 
 USER=$(whoami)
 HOME=/home/$USER
-if [ $(id -u) != 0 ]; then
+if [ $(id -u) == 0 ]; then
 HOME="/root"
 fi
 
