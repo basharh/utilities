@@ -2,13 +2,13 @@
 
 set -e # Exit on error
 
-HOME=/home/bashar
+HOME=/home/$USER
 SSH_FOLDER=$HOME/.ssh
 AUTHORIZED_KEYS=$HOME/.ssh/authorized_keys
 
 if [ ! -d $SSH_FOLDER ] || [ ! -f $AUTHORIZED_KEYS ]; then
-    mkdir $SSH_FOLDER
-    touch $AUTHORIZED_KEYS
+    mkdir $SSH_FOLDER; chmod 0700 $SSH_FOLDER;
+    touch $AUTHORIZED_KEYS; chmod 0600 $AUTHORIZED_KEYS;
 fi
 
 mkdir $HOME/.vim

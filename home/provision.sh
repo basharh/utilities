@@ -10,6 +10,7 @@ fi
 userdel -r bashar
 addgroup bashar
 useradd -m -g bashar -G sudo,adm bashar
+chsh -s /bin/zsh bashar
 
 #apt-get -q update
 apt-get -q install -y git zsh openssh-server unzip
