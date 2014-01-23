@@ -3,6 +3,10 @@
 set -e # Exit on error
 
 HOME=/home/$USER
+if [ $(id -u) != 0 ]; then
+HOME=/root
+fi
+
 SSH_FOLDER=$HOME/.ssh
 AUTHORIZED_KEYS=$HOME/.ssh/authorized_keys
 
