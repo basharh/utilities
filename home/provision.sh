@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
-if ![ $(id -u) = 0 ]; then
+set -e # Exit on error
+
+if [ $(id -u) != 0 ]; then
     echo "You should be root!"
     exit 1
 fi
+
 apt-get -qq update
 apt-get -qq install -y git zsh openssh-server unzip
 
 su bashar
-HOME = /home/bashar
+$HOME = /home/bashar
+
+if [ -d ~/.ssh ] || [ -f ~/.ssh/authorized_keys ]; then
+    echo "The files exist"
+    exit 1
+fi
 
 mkdir $HOME/.vim
 mkdir $HOME/.vim/bundle
