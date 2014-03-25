@@ -58,6 +58,7 @@ augroup bashar_group
   autocmd!
   autocmd vimenter * NERDTree " Launch NERDTree at start
   autocmd FileType html,c,java setlocal shiftwidth=4 tabstop=4
+  autocmd FileType coffee,javascript setlocal shiftwidth=2 tabstop=2
   autocmd FileType python,javascript,html,css,java
     \ setlocal formatoptions-=t "noexpandtab
   " Automatically cd into the directory that the file is in
@@ -96,7 +97,7 @@ nnoremap <C-\>g :scs find g <C-R>=expand("<cfile>")<CR><CR>
 noremap <leader>k :s/\‘\\|’/'/g<CR>
 
 " Toggle paste options and print it
-nnoremap \v :set paste! \| :set paste?<CR>
+nnoremap <C-p> :set paste! \| :set paste?<CR>
 
 " nnoremap <silent> <M-k> :wincmd k<CR>:echo winnr()<cr>
 " nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
@@ -125,9 +126,6 @@ if !has("gui")
   endwhile
 endif
 
-" Quick save
-inoremap <M-s> <c-c>:write<cr>
-nnoremap <M-s> :write<cr>
 nnoremap <leader>x :qa<cr>
 
 "Leave the old win navs behind, Luke
@@ -159,7 +157,10 @@ xnoremap <c-k> <c-c>
 cnoremap <c-k> <c-c>
 
 " Prevent s from interfering with incomplete <leader>s mappings
-nmap s <nop>
+map s <nop>
+map K <nop>
+nnoremap <M-n> nzz
+nnoremap <M-p> Nzz
 
 " Select next email address
 onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
@@ -230,15 +231,19 @@ hi Visual term=reverse ctermfg=11 ctermbg=0
 hi Search term=reverse ctermfg=11 ctermbg=0
 hi PMenu term=reverse ctermfg=11 ctermbg=0
 hi PMenuSel term=reverse ctermfg=0 ctermbg=11
-hi Folded ctermfg=1 ctermbg=0
+" hi Folded ctermbg=243 ctermfg=21
 " }}}
 
 nnoremap <space> za
-set foldmethod=indent
-set foldnestmax=2
+"set foldmethod=syntax
+"set foldnestmax=2
+
+au FileType javascript call JavaScriptFold()
 
 "let t_SI = "\033]12;red\007"
 "let t_EI = "\033]12;blue\007"
 
-" cscope add ~/cscope.out
+" Navigation shortcuts
+nnoremap <C-J> <C-E>
+nnoremap <C-K> <C-Y>
 
