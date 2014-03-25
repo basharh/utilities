@@ -4,6 +4,7 @@
 
 " TODO: Automatically toggle read-mode for read-only files.
 
+finish
 if exists("loaded_bashar_read_mode")
   finish
 endif

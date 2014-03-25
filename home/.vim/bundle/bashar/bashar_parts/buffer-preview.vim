@@ -1,4 +1,5 @@
 
+finish
 if exists("loaded_bashar_buffer_preview")
   finish
 endif
