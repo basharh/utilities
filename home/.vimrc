@@ -1,5 +1,7 @@
 " Bashar's VIMRC
 
+set encoding=utf-8
+
 let mapleader = ","
 
 " Option Settings {{{
@@ -9,7 +11,7 @@ set shiftwidth=4
 set shiftround
 set expandtab
 set smarttab
-set textwidth=71
+set textwidth=79
 set number
 set ignorecase
 set smartcase
@@ -21,6 +23,7 @@ set showcmd "This shows what you are typing as a command.
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
+  set guioptions-=T
 endif
 " }}}
 
@@ -56,11 +59,15 @@ set statusline+=\ [%{winnr()}]
 " General or Multi-filetype autocommands {{{
 augroup bashar_group
   autocmd!
-  autocmd vimenter * NERDTree " Launch NERDTree at start
-  autocmd FileType html,c,java setlocal shiftwidth=4 tabstop=4
-  autocmd FileType coffee,javascript setlocal shiftwidth=2 tabstop=2
+  "autocmd vimenter * NERDTree " Launch NERDTree at start
+  autocmd FileType c,java,php setlocal shiftwidth=4 tabstop=4
+  "autocmd FileType coffee,javascript setlocal shiftwidth=2 tabstop=2
   autocmd FileType python,javascript,html,css,java
     \ setlocal formatoptions-=t "noexpandtab
+  "autocmd FileType ruby setlocal noexpandtab
+  autocmd FileType ruby,html,jade,markdown,less,yaml,htmldjango
+    \ setlocal tabstop=2 shiftwidth=2 expandtab
+  autocmd FileType markdown setlocal nofoldenable
   " Automatically cd into the directory that the file is in
   "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
   " Remove any trailing whitespace that is in the file
@@ -136,8 +143,8 @@ map <c-w>l <nop>
 
 nnoremap ZZ :write \| :close<cr>
 
-nnoremap <M-x> :write<CR>:source %<CR>
-inoremap <M-x> <c-c>:write<CR>:source %<CR>
+"nnoremap <M-x> :write<CR>:source %<CR>
+"inoremap <M-x> <c-c>:write<CR>:source %<CR>
 
 "Go to top of visual selection
 vnoremap gt <esc>`>:exec 'norm '.visualmode().'`<lt>'<cr>
@@ -168,6 +175,7 @@ onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
 nnoremap <leader>sv :vertical split<cr>
 nnoremap <leader>sh :split<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>em :split ~/work/makersrow/worklog.markdown<cr>
 nnoremap <leader>et :split ~/TODO<cr>
 
 "Wrap word in quotes
@@ -197,8 +205,8 @@ nnoremap <leader>h :execute "help " . expand("<cword>")<cr>
 
 nnoremap <c-h> :set hls!<cr>
 nnoremap <c-l> :set list!<cr>
-nnoremap <c-n> :tabNext<cr>
-nnoremap <C-t> :execute "tabedit " . expand("%")<cr>
+"nnoremap <c-n> :tabNext<cr>
+"nnoremap <C-t> :execute "tabedit " . expand("%")<cr>
 
 " {{{2 NERDTree Mappings *** "
 nnoremap <leader>tt :NERDTreeToggle<cr>
@@ -227,10 +235,10 @@ endfunction
 
 " Colors {{{
 "color zellner
-hi Visual term=reverse ctermfg=11 ctermbg=0
-hi Search term=reverse ctermfg=11 ctermbg=0
-hi PMenu term=reverse ctermfg=11 ctermbg=0
-hi PMenuSel term=reverse ctermfg=0 ctermbg=11
+"hi Visual term=reverse ctermfg=11 ctermbg=0
+"hi Search term=reverse ctermfg=11 ctermbg=0
+"hi PMenu term=reverse ctermfg=11 ctermbg=0
+"hi PMenuSel term=reverse ctermfg=0 ctermbg=11
 " hi Folded ctermbg=243 ctermfg=21
 " }}}
 
@@ -246,4 +254,26 @@ au FileType javascript call JavaScriptFold()
 " Navigation shortcuts
 nnoremap <C-J> <C-E>
 nnoremap <C-K> <C-Y>
+
+set noswapfile
+"let g:NERDTreeDirArrows=0
+let NERDTreeIgnore = ['\.pyc$']
+
+colorscheme ir_black
+
+nnoremap <silent> <M-n> :tnext<CR>
+nnoremap <silent> <M-p> :tprevious<CR>
+set tags=./tags;/
+
+hi StatusLineNC term=reverse guifg=lightcyan4
+let NERDTreeHijackNetrw=1
+
+function! SplitDir()
+    execute "split " . expand('%:h')
+endfunction
+
+set splitright
+nnoremap <C-n> :execute "split " . expand('%:h')<cr>
+nnoremap <C-m> :execute "vsplit " . expand('%:h')<cr>
+nnoremap <C-e> :execute "e " . expand('%:h')<cr>
 
