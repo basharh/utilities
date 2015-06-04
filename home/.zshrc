@@ -15,7 +15,7 @@ TRAPEXIT(){
 }
 
 alias vi=vim
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias info='info --vi-keys'
 alias readelf='readelf -W'
 
@@ -45,20 +45,17 @@ set -s escape-time 0
 #the status of the last command if it was not zero
 #PS1='%(?..(%?%))%# '
 
-#Pring %~ in red
+#Print %~ in red
 VIMODE='i'
-PS1="%m %{${bg[default]}${fg[red]}%}%~%{${fg[default]}${bg[default]}%} ${VIMODE} %# "
+PS1="%M %{${bg[default]}${fg[red]}%}%~%{${fg[default]}${bg[default]}%} ${VIMODE} %# "
 
 # Very convoluted way of setting PS1. I couldn't get PS1 to read a dynamic variable
 # by setting $VIMODE insdie zle-keymap-select inside the function !!
 function zle-keymap-select() {
     #VIMODE=$KEYMAP;
     VIMODE="${${KEYMAP/vicmd/c}/(main|viins)/i}"
-    PS1="%m %{${bg[default]}${fg[red]}%}%~%{${fg[default]}${bg[default]}%} ${VIMODE} %# "
+    PS1="%M %{${bg[default]}${fg[red]}%}%~%{${fg[default]}${bg[default]}%} ${VIMODE} %# "
     zle reset-prompt
 }
 
 zle -N zle-keymap-select
-
-export PATH=$HOME/local/bin:$PATH
-#export NODE_PATH=$HOME/local/lib/node_modules
