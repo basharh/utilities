@@ -15,7 +15,7 @@ TRAPEXIT(){
 }
 
 alias vi=vim
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias info='info --vi-keys'
 alias readelf='readelf -W'
 
