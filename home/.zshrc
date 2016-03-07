@@ -11,11 +11,11 @@ bindkey '^k' vi-cmd-mode
 
 # Run on the way out of the shell
 TRAPEXIT(){
-
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 }
 
 alias vi=vim
-alias ls='ls --color=auto'
+alias ls='ls -G'
 alias info='info --vi-keys'
 alias readelf='readelf -W'
 
@@ -59,3 +59,8 @@ function zle-keymap-select() {
 }
 
 zle -N zle-keymap-select
+
+# map v in vi mode to launch command line editor.
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd '^e' edit-command-line

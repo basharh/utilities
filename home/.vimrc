@@ -4,6 +4,8 @@ set encoding=utf-8
 
 let mapleader = ","
 
+set lines=999
+
 " Option Settings {{{
 set nocompatible " Necesary for lots of cool vim things
 set tabstop=4
@@ -19,11 +21,13 @@ set autoindent
 set incsearch
 set autoread "Automatically load external changes to file
 set showcmd "This shows what you are typing as a command.
+set cursorline
 "set hlsearch " Highlight search findings
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
   set guioptions-=T
+  set guicursor+=n-v-c:blinkon0
 endif
 " }}}
 
@@ -65,7 +69,7 @@ augroup bashar_group
   autocmd FileType python,javascript,html,css,java
     \ setlocal formatoptions-=t "noexpandtab
   "autocmd FileType ruby setlocal noexpandtab
-  autocmd FileType ruby,html,jade,markdown,less,yaml,htmldjango
+  autocmd FileType ruby,html,jade,markdown,less,yaml,htmldjango,liquid
     \ setlocal tabstop=2 shiftwidth=2 expandtab
   autocmd FileType markdown setlocal nofoldenable
   " Automatically cd into the directory that the file is in
@@ -166,8 +170,11 @@ cnoremap <c-k> <c-c>
 " Prevent s from interfering with incomplete <leader>s mappings
 map s <nop>
 map K <nop>
-nnoremap <M-n> nzz
-nnoremap <M-p> Nzz
+"nnoremap <M-n> nzz
+"nnoremap <M-p> Nzz
+"
+nnoremap <M-n> :tnext<cr>
+nnoremap <M-p> :tprevious<cr>
 
 " Select next email address
 onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
@@ -176,7 +183,7 @@ nnoremap <leader>sv :vertical split<cr>
 nnoremap <leader>sh :split<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>em :split ~/work/makersrow/worklog.markdown<cr>
-nnoremap <leader>et :split ~/TODO<cr>
+nnoremap <leader>et :split ~/TODO.markdown<cr>
 
 "Wrap word in quotes
 nnoremap <leader>" ea"<esc>bi"<esc>el
@@ -246,8 +253,6 @@ nnoremap <space> za
 "set foldmethod=syntax
 "set foldnestmax=2
 
-au FileType javascript call JavaScriptFold()
-
 "let t_SI = "\033]12;red\007"
 "let t_EI = "\033]12;blue\007"
 
@@ -258,8 +263,6 @@ nnoremap <C-K> <C-Y>
 set noswapfile
 "let g:NERDTreeDirArrows=0
 let NERDTreeIgnore = ['\.pyc$']
-
-colorscheme ir_black
 
 nnoremap <silent> <M-n> :tnext<CR>
 nnoremap <silent> <M-p> :tprevious<CR>
@@ -277,3 +280,9 @@ nnoremap <C-n> :execute "split " . expand('%:h')<cr>
 nnoremap <C-m> :execute "vsplit " . expand('%:h')<cr>
 nnoremap <C-e> :execute "e " . expand('%:h')<cr>
 
+nnoremap <M-n> :tnext<cr>
+nnoremap <C-p> :tprev<cr>
+
+nnoremap <M-e> :e!<cr>
+
+set tags=./tags;
