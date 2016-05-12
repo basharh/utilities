@@ -28,7 +28,8 @@ if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
   set guioptions-=T
   set guicursor+=n-v-c:blinkon0
-  set guioptions-=Lr
+  set guioptions-=L
+  set guioptions-=r
   autocmd! GUIEnter * set vb t_vb=
 endif
 " }}}
