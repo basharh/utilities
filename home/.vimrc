@@ -28,6 +28,8 @@ if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
   set guioptions-=T
   set guicursor+=n-v-c:blinkon0
+  set guioptions-=Lr
+  autocmd! GUIEnter * set vb t_vb=
 endif
 " }}}
 
@@ -65,7 +67,7 @@ augroup bashar_group
   autocmd!
   "autocmd vimenter * NERDTree " Launch NERDTree at start
   autocmd FileType c,java,php setlocal shiftwidth=4 tabstop=4
-  "autocmd FileType coffee,javascript setlocal shiftwidth=2 tabstop=2
+  autocmd FileType coffee,javascript,typescript,json setlocal shiftwidth=2 tabstop=2
   autocmd FileType python,javascript,html,css,java
     \ setlocal formatoptions-=t "noexpandtab
   "autocmd FileType ruby setlocal noexpandtab
@@ -182,7 +184,7 @@ onoremap ine :<c-u>execute "normal! /\\S*@\rvt@"<cr>
 nnoremap <leader>sv :vertical split<cr>
 nnoremap <leader>sh :split<cr>
 nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>em :split ~/work/makersrow/worklog.markdown<cr>
+nnoremap <leader>em :split ~/work/worklog.markdown<cr>
 nnoremap <leader>et :split ~/TODO.markdown<cr>
 
 "Wrap word in quotes
@@ -268,7 +270,6 @@ nnoremap <silent> <M-n> :tnext<CR>
 nnoremap <silent> <M-p> :tprevious<CR>
 set tags=./tags;/
 
-hi StatusLineNC term=reverse guifg=lightcyan4
 let NERDTreeHijackNetrw=1
 
 function! SplitDir()
@@ -286,3 +287,4 @@ nnoremap <C-p> :tprev<cr>
 nnoremap <M-e> :e!<cr>
 
 set tags=./tags;
+set nofixeol

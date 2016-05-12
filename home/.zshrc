@@ -11,7 +11,7 @@ bindkey '^k' vi-cmd-mode
 
 # Run on the way out of the shell
 TRAPEXIT(){
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+
 }
 
 alias vi=vim
