@@ -5,9 +5,7 @@ set encoding=utf-8
 let mapleader = ","
 
 set lines=999
-
-" Option Settings {{{
-set nocompatible " Necesary for lots of cool vim things
+set nocompatible
 set tabstop=2
 set shiftwidth=2
 set shiftround
@@ -19,10 +17,9 @@ set ignorecase
 set smartcase
 set autoindent
 set incsearch
-set autoread "Automatically load external changes to file
-set showcmd "This shows what you are typing as a command.
+set autoread
+set showcmd
 set cursorline
-"set hlsearch " Highlight search findings
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
