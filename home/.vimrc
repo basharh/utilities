@@ -8,8 +8,8 @@ set lines=999
 
 " Option Settings {{{
 set nocompatible " Necesary for lots of cool vim things
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set shiftround
 set expandtab
 set smarttab
@@ -45,11 +45,7 @@ source $VIMRUNTIME/ftplugin/man.vim
 filetype plugin indent on
 syntax on
 
-" Status Line Settings {{{
 set laststatus=2
-"set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
-"set statusline=%F%m%r%h%w\ [%l,%v][%p%%]
-
 set statusline=%F         " Path to the file
 set statusline+=\ %y         " FileType
 set statusline+=%m         " Modified Flag
@@ -57,52 +53,10 @@ set statusline+=%r         " Read-only flag
 set statusline+=%=        " Switch to the right side
 set statusline+=[l:\ %l, " Separator
 set statusline+=\ c:\ %c]        " Current line
-"set statusline+=%L        " Total lines
-"set statusline+=\ %p        " Total lines
 set statusline+=\ %P        " Total lines
 set statusline+=\ [%{winnr()}]
-" }}}
-
-" General or Multi-filetype autocommands {{{
-augroup bashar_group
-  autocmd!
-  "autocmd vimenter * NERDTree " Launch NERDTree at start
-  autocmd FileType c,java,php setlocal shiftwidth=4 tabstop=4
-  autocmd FileType coffee,javascript,typescript,json setlocal shiftwidth=2 tabstop=2
-  autocmd FileType python,javascript,html,css,java
-    \ setlocal formatoptions-=t "noexpandtab
-  "autocmd FileType ruby setlocal noexpandtab
-  autocmd FileType ruby,html,jade,markdown,less,yaml,htmldjango,liquid
-    \ setlocal tabstop=2 shiftwidth=2 expandtab
-  autocmd FileType markdown setlocal nofoldenable
-  " Automatically cd into the directory that the file is in
-  "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
-  " Remove any trailing whitespace that is in the file
-  " autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-  " autocmd BufRead,BufWrite * match Error /\s\+$/
-augroup END
-" }}}
-
-" {{{ Markdown settings
-augroup markdown_group
-  autocmd!
-  autocmd FileType markdown
-    \ onoremap <buffer> ih
-    \ :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
-augroup END
-" }}}
-
-" Vimscript file settings ---------------------- {{{
-augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
-" }}}
-
-" Mappings {{{
 
 nnoremap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-"nmap <C-Space>s :scs find s <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>s :scs find s <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-\>g :scs find g <C-R>=expand("<cfile>")<CR><CR>
@@ -112,11 +66,6 @@ noremap <leader>k :s/\‘\\|’/'/g<CR>
 
 " Toggle paste options and print it
 nnoremap <C-p> :set paste! \| :set paste?<CR>
-
-" nnoremap <silent> <M-k> :wincmd k<CR>:echo winnr()<cr>
-" nnoremap <silent> <M-j> :wincmd j<CR>:echo winnr()<cr>
-" nnoremap <silent> <M-h> :wincmd h<CR>:echo winnr()<cr>
-" nnoremap <silent> <M-l> :wincmd l<CR>:echo winnr()<cr>
 
 nnoremap <silent> <M-k> :wincmd k<CR>
 nnoremap <silent> <M-j> :wincmd j<CR>
@@ -150,9 +99,6 @@ map <c-w>l <nop>
 
 nnoremap ZZ :write \| :close<cr>
 
-"nnoremap <M-x> :write<CR>:source %<CR>
-"inoremap <M-x> <c-c>:write<CR>:source %<CR>
-
 "Go to top of visual selection
 vnoremap gt <esc>`>:exec 'norm '.visualmode().'`<lt>'<cr>
 
@@ -162,10 +108,6 @@ vnoremap gb <esc>`<lt>:exec 'norm '.visualmode().'`>'<cr>
 "Wrap visual selection with quotes
 vnoremap <leader>" <esc>`>a"<esc>`<lt>i"<esc>
 
-"Train yourself not to use ESC to go to normal mode
-" inoremap <esc> <nop>
-
-" Use <c-k> as <esc> or <c-c>
 noremap! <c-k> <c-c>
 xnoremap <c-k> <c-c>
 cnoremap <c-k> <c-c>
@@ -173,9 +115,7 @@ cnoremap <c-k> <c-c>
 " Prevent s from interfering with incomplete <leader>s mappings
 map s <nop>
 map K <nop>
-"nnoremap <M-n> nzz
-"nnoremap <M-p> Nzz
-"
+
 nnoremap <M-n> :tnext<cr>
 nnoremap <M-p> :tprevious<cr>
 
@@ -191,17 +131,6 @@ nnoremap <leader>et :split ~/TODO.markdown<cr>
 "Wrap word in quotes
 nnoremap <leader>" ea"<esc>bi"<esc>el
 
-" Insert Mode mappings that start with a non-control character are
-" not good
-" nnoremap <leader>x :source %<CR>
-" inoremap <leader>x <c-c>:write<CR>:source %<CR>
-
-augroup shortcuts_group
-autocmd!
-autocmd FileType javascript,c
-      \ nnoremap <buffer> <leader>; :<c-u>execute "normal! mqA;\e"<cr>
-augroup END
-
 nnoremap <leader>ws :call ToggleWSMatch()<cr>
 
 "Delete trailing whitespace
@@ -215,20 +144,11 @@ nnoremap <leader>h :execute "help " . expand("<cword>")<cr>
 
 nnoremap <c-h> :set hls!<cr>
 nnoremap <c-l> :set list!<cr>
-"nnoremap <c-n> :tabNext<cr>
-"nnoremap <C-t> :execute "tabedit " . expand("%")<cr>
 
-" {{{2 NERDTree Mappings *** "
 nnoremap <leader>tt :NERDTreeToggle<cr>
 
 "Find the current file in the NERDTree
 nnoremap <leader>tf :NERDTreeFind<cr>
-
-" Close NERDTree Mapppings}}}2
-
-" }}}
-
-" Functions {{{
 
 let g:w_toggled = 0
 function! ToggleWSMatch()
@@ -241,23 +161,7 @@ function! ToggleWSMatch()
   endif
 endfunction
 
-" }}}
-
-" Colors {{{
-"color zellner
-"hi Visual term=reverse ctermfg=11 ctermbg=0
-"hi Search term=reverse ctermfg=11 ctermbg=0
-"hi PMenu term=reverse ctermfg=11 ctermbg=0
-"hi PMenuSel term=reverse ctermfg=0 ctermbg=11
-" hi Folded ctermbg=243 ctermfg=21
-" }}}
-
 nnoremap <space> za
-"set foldmethod=syntax
-"set foldnestmax=2
-
-"let t_SI = "\033]12;red\007"
-"let t_EI = "\033]12;blue\007"
 
 " Navigation shortcuts
 nnoremap <C-J> <C-E>
@@ -273,10 +177,6 @@ set tags=./tags;/
 
 let NERDTreeHijackNetrw=1
 
-function! SplitDir()
-    execute "split " . expand('%:h')
-endfunction
-
 set splitright
 nnoremap <C-n> :execute "split " . expand('%:h')<cr>
 nnoremap <C-m> :execute "vsplit " . expand('%:h')<cr>
@@ -289,3 +189,5 @@ nnoremap <M-e> :e!<cr>
 
 set tags=./tags;
 set nofixeol
+
+let g:bufExplorerShowDirectories=0   " Do not show directories.
