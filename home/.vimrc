@@ -166,7 +166,7 @@ nnoremap <C-K> <C-Y>
 
 set noswapfile
 "let g:NERDTreeDirArrows=0
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
 nnoremap <silent> <M-n> :tnext<CR>
 nnoremap <silent> <M-p> :tprevious<CR>
@@ -194,3 +194,17 @@ if exists('g:loaded_prettier')
   let g:prettier#autoformat = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql Prettier
 endif
+
+" I usually use prettier within eslint, so it's not necessary to list it
+" another ALE linter and fixer.
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_sign_column_always=1
+let g:ale_fix_on_save=1
+
+let g:localvimrc_ask=0 " don't ask to load lvimrc
+let g:localvimrc_reverse=1 " start with the local directory
+let g:localvimrc_count=1 " load only one .lvimrc
+
+" Run ALE after sourcing the local vimrc
+autocmd User LocalVimRCPost ALELint
