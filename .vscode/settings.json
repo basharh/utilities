@@ -1,0 +1,79 @@
+{
+    "breadcrumbs.symbolPath": "off",
+    "editor.renderIndentGuides": false,
+    "explorer.openEditors.visible": 0,
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>", "s", "h"
+            ],
+            "commands": [
+                "workbench.action.splitEditorDown",
+            ]
+        },
+        {
+            "before": [
+                "<leader>", "s", "v"
+            ],
+            "commands": [
+                "workbench.action.splitEditorRight",
+            ]
+        },
+        {
+            "before": [
+                "<leader>", "q"
+            ],
+            "commands": [
+                ":q"
+            ]
+        },
+        {
+            "before": [
+                "ß" // Alt-s
+            ],
+            "commands": [
+                ":w",
+                "workbench.action.files.save"
+            ]
+        },
+        {
+            "before": ["<C-h>"],
+            "commands": [
+                ":set invhlsearch"
+            ]
+        },
+        {
+            "before": ["<C-j>"],
+            "commands": [
+                "scrollLineDown"
+            ]
+        },
+        {
+            "before": ["<C-k>"],
+            "commands": [
+                "scrollLineUp"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "ß"
+            ],
+            "after": ["<esc>"],
+            "commands": [
+                ":w",
+                "workbench.action.files.save"
+            ]
+        },
+    ],
+    "vim.leader": ",",
+    "editor.cursorBlinking": "solid",
+    "editor.occurrencesHighlight": false,
+    "files.insertFinalNewline": true,
+    "editor.scrollBeyondLastLine": false,
+    "vim.visualstar": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "vim.useSystemClipboard": true
+}
