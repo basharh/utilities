@@ -20,6 +20,7 @@ set incsearch
 set autoread
 set showcmd
 set cursorline
+"set autochdir
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
@@ -27,6 +28,7 @@ if has("mac") && has("gui")
   set guicursor+=n-v-c:blinkon0
   set guioptions-=L
   set guioptions-=r
+  set guifont=Menlo-Regular:h14
   autocmd! GUIEnter * set vb t_vb=
 endif
 " }}}
@@ -166,7 +168,7 @@ nnoremap <C-K> <C-Y>
 
 set noswapfile
 "let g:NERDTreeDirArrows=0
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
 nnoremap <silent> <M-n> :tnext<CR>
 nnoremap <silent> <M-p> :tprevious<CR>
@@ -184,6 +186,8 @@ nnoremap <C-p> :tprev<cr>
 
 nnoremap <M-e> :e!<cr>
 
+nnoremap <silent> <M-f> :ALEFix<CR>
+
 set tags=./tags;
 set nofixeol
 colorscheme koehler
@@ -194,3 +198,19 @@ if exists('g:loaded_prettier')
   let g:prettier#autoformat = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql Prettier
 endif
+
+" I usually use prettier within eslint, so it's not necessary to list it
+" another ALE linter and fixer.
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['eslint'], 'java': ['google_java_format'], 'typescript': ['eslint']}
+let g:ale_sign_column_always=1
+let g:ale_fix_on_save=1
+let g:ale_lint_delay=-1
+" let g:ale_completion_enabled=1
+
+let g:localvimrc_ask=0 " don't ask to load lvimrc
+let g:localvimrc_reverse=1 " start with the local directory
+let g:localvimrc_count=1 " load only one .lvimrc
+
+" Run ALE after sourcing the local vimrc
+autocmd User LocalVimRCPost ALELint

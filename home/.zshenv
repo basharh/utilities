@@ -5,4 +5,5 @@ if [[ $SHLVL = 1 ]]; then
 fi
 
 export LS_COLORS="ow=01;90:di=01;90"
+export LSCOLORS='gxfxcxdxbxegedabagacad'
 export EDITOR='vim'
