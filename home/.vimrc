@@ -33,9 +33,6 @@ if has("mac") && has("gui")
 endif
 " }}}
 
-call pathogen#infect()
-Helptags " Tells Pathogen to generate help tags ( I think :/ )
-
 source $VIMRUNTIME/ftplugin/man.vim
 
 " Tells VIM to run the filetype-specific plugins and
@@ -194,23 +191,43 @@ colorscheme koehler
 
 let g:bufExplorerShowDirectories=0   " Do not show directories.
 
-if exists('g:loaded_prettier')
-  let g:prettier#autoformat = 0
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql Prettier
-endif
-
 " I usually use prettier within eslint, so it's not necessary to list it
 " another ALE linter and fixer.
-let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers = {'javascript': ['eslint'], 'java': ['google_java_format'], 'typescript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint'],
+      \ 'typescript': ['tsserver', 'eslint'],
+      \ 'typescriptreact': ['tsserver', 'eslint']}
+let g:ale_fixers = {'javascript': ['eslint'],
+      \ 'java': ['google_java_format'],
+      \ 'typescript': ['eslint', 'prettier'],
+      \ 'typescriptreact': ['eslint', 'prettier'],
+      \ 'javascriptreact': ['eslint', 'prettier'],
+      \ 'json': ['prettier']}
 let g:ale_sign_column_always=1
 let g:ale_fix_on_save=1
 let g:ale_lint_delay=-1
 " let g:ale_completion_enabled=1
 
-let g:localvimrc_ask=0 " don't ask to load lvimrc
-let g:localvimrc_reverse=1 " start with the local directory
-let g:localvimrc_count=1 " load only one .lvimrc
+nnoremap <C-]> :ALEGoToDefinition<cr>
+hi ALEErrorSign guifg=Red
+hi ALEWarningSign guifg=Yellow
 
-" Run ALE after sourcing the local vimrc
-autocmd User LocalVimRCPost ALELint
+" orange
+hi tsxCloseString guifg=#F99575
+hi tsxCloseTag guifg=#F99575
+hi tsxTagName guifg=#F99575
+hi tsxCloseTagName guifg=#F99575
+hi tsxAttributeBraces guifg=#F99575
+hi tsxEqual guifg=#F99575
+
+
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'basharh/bashar-vim'
+Plug 'preservim/nerdcommenter'
+Plug 'dense-analysis/ale'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'tpope/vim-sensible'
+Plug 'jparise/vim-graphql'
+Plug 'tpope/vim-fugitive'
+Plug 'MaxMEllon/vim-jsx-pretty'
+call plug#end()
