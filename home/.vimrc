@@ -194,13 +194,17 @@ let g:bufExplorerShowDirectories=0   " Do not show directories.
 " I usually use prettier within eslint, so it's not necessary to list it
 " another ALE linter and fixer.
 let g:ale_linters = {'javascript': ['eslint'],
+      \ 'dart': ['analysis_server'],
       \ 'typescript': ['tsserver', 'eslint'],
+      \ 'python': ['pyls', 'pylint'],
       \ 'typescriptreact': ['tsserver', 'eslint']}
 let g:ale_fixers = {'javascript': ['eslint'],
       \ 'java': ['google_java_format'],
       \ 'typescript': ['eslint', 'prettier'],
       \ 'typescriptreact': ['eslint', 'prettier'],
       \ 'javascriptreact': ['eslint', 'prettier'],
+      \ 'dart': ['dartfmt'],
+      \ 'python': ['black'],
       \ 'json': ['prettier']}
 let g:ale_sign_column_always=1
 let g:ale_fix_on_save=1
@@ -219,6 +223,9 @@ hi tsxCloseTagName guifg=#F99575
 hi tsxAttributeBraces guifg=#F99575
 hi tsxEqual guifg=#F99575
 
+let g:ale_dart_dartfmt_executable = '/Users/bashar/work/bin/flutter/bin/cache/dart-sdk/bin/dartfmt'
+let g:ale_dart_analysis_server_executable = '/Users/bashar/work/bin/flutter/bin/cache/dart-sdk/bin/dart'
+let g:dart_language_server_executable = '/Users/bashar/work/bin/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot'
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
@@ -230,4 +237,5 @@ Plug 'tpope/vim-sensible'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
