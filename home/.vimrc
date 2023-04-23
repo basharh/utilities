@@ -23,7 +23,7 @@ set cursorline
 set nofixeol
 set noswapfile
 set splitright
-"set autochdir
+set autochdir
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
@@ -59,7 +59,7 @@ if !has("gui")
   endwhile
 endif
 
-" Prevent s from interfering with incomplete <leader>s mappings
+" Prevents from interfering with incomplete <leader>s mappings
 map s <nop>
 map K <nop>
 
@@ -68,43 +68,12 @@ nnoremap <silent> <M-p> :tprevious<CR>
 
 let NERDTreeHijackNetrw=1
 
-nnoremap <silent> <M-f> :ALEFix<CR>
-
 set tags=./tags;
-colorscheme koehler
 
-let g:bufExplorerShowDirectories=0   " Do not show directories.
-
-" I usually use prettier within eslint, so it's not necessary to list it
-" another ALE linter and fixer.
-let g:ale_linters = {'javascript': ['eslint'],
-      \ 'dart': ['analysis_server'],
-      \ 'typescript': ['tsserver', 'eslint'],
-      \ 'python': ['pyls', 'pylint'],
-      \ 'typescriptreact': ['tsserver', 'eslint']}
-let g:ale_fixers = {'javascript': ['eslint'],
-      \ 'java': ['google_java_format'],
-      \ 'typescript': ['eslint', 'prettier'],
-      \ 'typescriptreact': ['eslint', 'prettier'],
-      \ 'javascriptreact': ['eslint', 'prettier'],
-      \ 'dart': ['dart-format'],
-      \ 'python': ['black'],
-      \ 'json': ['prettier']}
-let g:ale_sign_column_always=1
-let g:ale_fix_on_save=1
-let g:ale_lint_delay=-1
-" let g:ale_completion_enabled=1
-let g:ale_virtualtext_cursor='disabled'
-
-nnoremap <C-]> :ALEGoToDefinition<cr>
-
-"let g:ale_dart_dartfmt_executable = '/Users/bashar/work/bin/flutter/bin/cache/dart-sdk/bin/dartfmt'
-"let g:ale_dart_analysis_server_executable = '/Users/bashar/work/bin/flutter/bin/cache/dart-sdk/bin/dart'
-"let g:dart_language_server_executable = '/Users/bashar/work/bin/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot'
+let loaded_bashar_grep_operator = 1
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
-Plug 'basharh/bashar-vim'
 Plug 'preservim/nerdcommenter'
 Plug 'dense-analysis/ale'
 Plug 'jlanzarotta/bufexplorer'
@@ -117,4 +86,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
+Plug 'basharh/bashar-vim'
 call plug#end()
