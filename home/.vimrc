@@ -99,6 +99,8 @@ nnoremap <C-]> :ALEGoToDefinition<cr>
 
 nnoremap <leader>ga :Git add %<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <leader>zf :GFiles<CR>
+nnoremap <leader>zg :GGrep<CR>
 "nnoremap <leader>ad :GGrep<CR>
 
 let g:airline_section_b = '%-0.50{getcwd()}'
