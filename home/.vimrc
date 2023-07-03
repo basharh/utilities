@@ -72,6 +72,10 @@ set tags=./tags;
 
 let loaded_bashar_grep_operator = 1
 
+let $BAT_THEME='Sublime Snazzy'
+let $FZF_DEFAULT_OPTS='--exact'
+
+
 call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'preservim/nerdcommenter'
@@ -89,3 +93,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'basharh/bashar-vim'
 call plug#end()
+
+"let g:ale_fixers['ruby'] = ['rubocop']
+nnoremap <C-]> :ALEGoToDefinition<cr>
+
+nnoremap <leader>ga :Git add %<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
+"nnoremap <leader>ad :GGrep<CR>
+
+let g:airline_section_b = '%-0.50{getcwd()}'
+let g:airline_section_c = '%t'
