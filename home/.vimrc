@@ -23,7 +23,6 @@ set cursorline
 set nofixeol
 set noswapfile
 set splitright
-set autochdir
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
@@ -60,8 +59,8 @@ if !has("gui")
 endif
 
 " Prevents from interfering with incomplete <leader>s mappings
-map s <nop>
-map K <nop>
+"map s <nop>
+"map K <nop>
 
 nnoremap <silent> <M-n> :tnext<CR>
 nnoremap <silent> <M-p> :tprevious<CR>
@@ -91,6 +90,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
+"Plug 'prisma/vim-prisma'
+"Plug 'leafgarland/typescript-vim'
+Plug 'chrisbra/nrrwrgn'
 Plug 'basharh/bashar-vim'
 call plug#end()
 
@@ -101,7 +103,10 @@ nnoremap <leader>ga :Git add %<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
 nnoremap <leader>zf :GFiles<CR>
 nnoremap <leader>zg :GGrep<CR>
-"nnoremap <leader>ad :GGrep<CR>
+nnoremap <leader>zb :Buffers<CR>
 
-let g:airline_section_b = '%-0.50{getcwd()}'
-let g:airline_section_c = '%t'
+let $FZF_DEFAULT_COMMAND = 'rg --files'
+let g:ale_fixers['css'] = ['eslint']
+
+vnoremap <leader>r :NR<CR>
+let g:nrrw_rgn_vert = 1
