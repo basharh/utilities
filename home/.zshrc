@@ -35,14 +35,28 @@ set -o promptsubst
 
 set -s escape-time 0
 
-#PS1="%M %{${bg[default]}${fg[red]}%}%~%{${fg[default]}${bg[default]}%} %# "
-
-# map v in vi mode to launch command line editor.
-autoload -U edit-command-line
-zle -N edit-command-line
 bindkey -M vicmd '^e' edit-command-line
 
 autoload -Uz compinit && compinit
 
-export PATH="/opt/homebrew/opt/postgresql@12/bin:$PATH"
 export LESS="-F -X $LESS"
+
+export LS_COLORS="ow=01;90:di=01;90"
+export LSCOLORS='gxfxcxdxbxegedabagacad'
+export EDITOR='vim'
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow -E ".git" -E node_modules . "$1"
+}
+
+go_to_git_root() {
+  cd $(git rev-parse --show-toplevel)
+  zle push-line
+  zle accept-line
+  #zle reset-prompt
+  #zle redisplay
+  #echo -ne '\n'
+}
+
+zle -N go_to_git_root
+bindkey -M vicmd '^G' go_to_git_root
