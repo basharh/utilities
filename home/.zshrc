@@ -59,4 +59,17 @@ go_to_git_root() {
 }
 
 zle -N go_to_git_root
-bindkey -M vicmd '^G' go_to_git_root
+bindkey -M vicmd '^[g' go_to_git_root
+bindkey -M viins '^[g' go_to_git_root
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}
