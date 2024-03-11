@@ -23,6 +23,9 @@ set cursorline
 set nofixeol
 set noswapfile
 set splitright
+set completeopt-=preview
+"set completeopt+=popup
+set completeopt+=menu
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
@@ -30,7 +33,7 @@ if has("mac") && has("gui")
   set guicursor+=n-v-c:blinkon0
   set guioptions-=L
   set guioptions-=r
-  set guifont=Menlo-Regular:h14
+  set guifont=Menlo-Regular:h13
   autocmd! GUIEnter * set vb t_vb=
 endif
 " }}}
@@ -58,22 +61,10 @@ if !has("gui")
   endwhile
 endif
 
-" Prevents from interfering with incomplete <leader>s mappings
-"map s <nop>
-"map K <nop>
-
-nnoremap <silent> <M-n> :tnext<CR>
-nnoremap <silent> <M-p> :tprevious<CR>
-
-let NERDTreeHijackNetrw=1
-
-set tags=./tags;
+"nnoremap <silent> <M-n> :tnext<CR>
+"nnoremap <silent> <M-p> :tprevious<CR>
 
 let loaded_bashar_grep_operator = 1
-
-let $BAT_THEME='Sublime Snazzy'
-let $FZF_DEFAULT_OPTS='--exact'
-
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
@@ -93,20 +84,21 @@ Plug 'morhetz/gruvbox'
 "Plug 'prisma/vim-prisma'
 "Plug 'leafgarland/typescript-vim'
 Plug 'chrisbra/nrrwrgn'
+Plug 'HerringtonDarkholme/yats'
+Plug 'prisma/vim-prisma'
+Plug 'hashivim/vim-terraform'
+Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
+"Plug 'mattn/vim-lsp-settings'
+"Plug 'yegappan/lsp'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'voldikss/vim-floaterm'
 Plug 'basharh/bashar-vim'
 call plug#end()
 
-"let g:ale_fixers['ruby'] = ['rubocop']
-nnoremap <C-]> :ALEGoToDefinition<cr>
+nnoremap <silent> <leader>pc :call popup_clear()<CR>
 
-nnoremap <leader>ga :Git add %<CR>
-nnoremap <leader>gd :Gvdiffsplit<CR>
-nnoremap <leader>zf :GFiles<CR>
-nnoremap <leader>zg :GGrep<CR>
-nnoremap <leader>zb :Buffers<CR>
-
-let $FZF_DEFAULT_COMMAND = 'rg --files'
-let g:ale_fixers['css'] = ['eslint']
-
-vnoremap <leader>r :NR<CR>
-let g:nrrw_rgn_vert = 1
+# this is for a custom hacked code that I added to vim-lsp so that it can
+# automatically jump to first definition when there are multiple options
+let g:vim_lsp_jump_to_first = 1
