@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+dart analyze $1 | sed -E \
+  -e 's/error/e/g' \
+  -e 's/warning/w/g' \
+  -e 's/info/i/g' \
+  -e "s/^[ \t]*//" \
+  -e "s=- (.*\.dart)=- $1/\1=g"

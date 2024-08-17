@@ -4,7 +4,6 @@ set encoding=utf-8
 
 let mapleader=","
 
-set lines=999
 set nocompatible
 set tabstop=2
 set shiftwidth=2
@@ -33,7 +32,7 @@ if has("mac") && has("gui")
   set guicursor+=n-v-c:blinkon0
   set guioptions-=L
   set guioptions-=r
-  set guifont=Menlo-Regular:h13
+  set guifont=Menlo-Regular:h11
   autocmd! GUIEnter * set vb t_vb=
 endif
 " }}}
@@ -94,11 +93,16 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'github/copilot.vim'
+Plug 'thosakwe/vim-flutter'
+Plug 'airblade/vim-rooter'
 Plug 'basharh/bashar-vim'
 call plug#end()
 
+set ignorecase
+
 nnoremap <silent> <leader>pc :call popup_clear()<CR>
 
-# this is for a custom hacked code that I added to vim-lsp so that it can
-# automatically jump to first definition when there are multiple options
-let g:vim_lsp_jump_to_first = 1
+imap <C-l> <C-x><C-o>
+
+let g:rooter_patterns = ['.git', 'Makefile', 'pubspec.yaml', 'package.json']
