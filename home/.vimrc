@@ -25,6 +25,7 @@ set splitright
 set completeopt-=preview
 "set completeopt+=popup
 set completeopt+=menu
+set history=1000
 
 if has("mac") && has("gui")
   set macmeta "Uses the Alt key as the Meta Key
@@ -32,7 +33,8 @@ if has("mac") && has("gui")
   set guicursor+=n-v-c:blinkon0
   set guioptions-=L
   set guioptions-=r
-  set guifont=Menlo-Regular:h11
+  "set guifont=JetBrainsMonoNFM-Regular:h12
+  set guifont=Menlo:h12
   autocmd! GUIEnter * set vb t_vb=
 endif
 " }}}
@@ -70,7 +72,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'dense-analysis/ale'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'tpope/vim-sensible'
+"Plug 'tpope/vim-sensible'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -82,7 +84,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 "Plug 'prisma/vim-prisma'
 "Plug 'leafgarland/typescript-vim'
-Plug 'chrisbra/nrrwrgn'
+"Plug 'chrisbra/nrrwrgn'
 Plug 'HerringtonDarkholme/yats'
 Plug 'prisma/vim-prisma'
 Plug 'hashivim/vim-terraform'
@@ -96,6 +98,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'github/copilot.vim'
 Plug 'thosakwe/vim-flutter'
 Plug 'airblade/vim-rooter'
+Plug 'jremmen/vim-ripgrep'
+"Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
 Plug 'basharh/bashar-vim'
 call plug#end()
 
@@ -106,3 +112,11 @@ nnoremap <silent> <leader>pc :call popup_clear()<CR>
 imap <C-l> <C-x><C-o>
 
 let g:rooter_patterns = ['.git', 'Makefile', 'pubspec.yaml', 'package.json']
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<C-k>"
+
+imap <tab> <ESC>:echo "hello"<cr>
+imap <tab> <Esc>:call UltiSnips#ExpandSnippet()<CR>
+
+autocmd BufRead,BufNewFile,BufEnter *.dart UltiSnipsAddFiletypes dart-flutter
