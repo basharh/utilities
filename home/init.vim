@@ -1,6 +1,5 @@
 let mapleader=","
-set guifont=Menlo-Regular:h12
-
+set guifont=Menlo-Regular:h13
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching
@@ -24,21 +23,28 @@ filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 set signcolumn=yes
+set guicursor+=n-v-c:blinkon0
+set splitright " so that focus moves to new window
+set completeopt-=preview
+"set splitbelow
 
 call plug#begin("~/.nvim/plugged")
   Plug 'scrooloose/nerdtree'
   Plug 'preservim/nerdcommenter'
   Plug 'ellisonleao/gruvbox.nvim'
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
   Plug 'dart-lang/dart-vim-plugin'
   Plug 'voldikss/vim-floaterm'
   Plug 'tpope/vim-fugitive'
   Plug 'neovim/nvim-lspconfig'
   Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
-  Plug 'airblade/vim-rooter'
+  Plug 'honza/vim-snippets'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'notjedi/nvim-rooter.lua'
+  Plug 'nvim-lua/plenary.nvim'
+  "Plug 'stevearc/dressing.nvim' " optional for vim.ui.select
+  Plug 'akinsho/flutter-tools.nvim'
   Plug 'basharh/bashar-nvim'
 call plug#end()
 
 nnoremap <leader>ev :split $MYVIMRC<cr>
-inoremap imap <C-c> <Esc>
+inoremap <C-c> <Esc>
