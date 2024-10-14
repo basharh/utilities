@@ -1,5 +1,5 @@
 let mapleader=","
-set guifont=Menlo-Regular:h13
+set guifont=Menlo-Regular:h11
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching
@@ -26,6 +26,8 @@ set signcolumn=yes
 set guicursor+=n-v-c:blinkon0
 set splitright " so that focus moves to new window
 set completeopt-=preview
+"set completeopt+=noselect
+set noshowcmd
 "set splitbelow
 
 call plug#begin("~/.nvim/plugged")
@@ -41,10 +43,17 @@ call plug#begin("~/.nvim/plugged")
   Plug 'L3MON4D3/LuaSnip'
   Plug 'notjedi/nvim-rooter.lua'
   Plug 'nvim-lua/plenary.nvim'
-  "Plug 'stevearc/dressing.nvim' " optional for vim.ui.select
+  Plug 'stevearc/oil.nvim'
   Plug 'akinsho/flutter-tools.nvim'
+  Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-neotest/nvim-nio'
+  Plug 'sidlatau/neotest-dart'
+  Plug 'nvim-neotest/neotest'
   Plug 'basharh/bashar-nvim'
 call plug#end()
 
 nnoremap <leader>ev :split $MYVIMRC<cr>
 inoremap <C-c> <Esc>
+
+set maxmempattern=2000000
