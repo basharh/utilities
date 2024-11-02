@@ -50,6 +50,12 @@ call plug#begin("~/.nvim/plugged")
   Plug 'nvim-neotest/nvim-nio'
   Plug 'sidlatau/neotest-dart'
   Plug 'nvim-neotest/neotest'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'mortepau/codicons.nvim'
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'folke/twilight.nvim'
+  Plug 'NeogitOrg/neogit'
+  Plug 'rebelot/kanagawa.nvim'
   Plug 'basharh/bashar-nvim'
 call plug#end()
 
@@ -57,3 +63,12 @@ nnoremap <leader>ev :split $MYVIMRC<cr>
 inoremap <C-c> <Esc>
 
 set maxmempattern=2000000
+
+set background=dark
+colorscheme kanagawa
+
+set foldmethod=indent
+set foldopen=
+set foldlevelstart=99
+
+nnoremap <M-e> :e<CR>
