@@ -48,14 +48,16 @@ call plug#begin("~/.nvim/plugged")
   Plug 'antoinemadec/FixCursorHold.nvim'
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-neotest/nvim-nio'
-  Plug 'sidlatau/neotest-dart'
   Plug 'nvim-neotest/neotest'
+  Plug 'nvim-neotest/neotest-jest'
+  Plug 'sidlatau/neotest-dart'
   Plug 'hrsh7th/nvim-cmp'
   Plug 'mortepau/codicons.nvim'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'folke/twilight.nvim'
   Plug 'NeogitOrg/neogit'
   Plug 'rebelot/kanagawa.nvim'
+  Plug 'akinsho/toggleterm.nvim'
   Plug 'basharh/bashar-nvim'
 call plug#end()
 
