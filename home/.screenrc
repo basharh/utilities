@@ -3,3 +3,4 @@ vbell off
 defscrollback 30000
 term xterm-256color
 startup_message off
+utf8 on
